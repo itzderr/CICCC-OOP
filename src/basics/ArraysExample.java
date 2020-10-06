@@ -31,5 +31,20 @@ public class ArraysExample {
 
         System.out.println(arr1);
         System.out.println(Arrays.toString(arr1));
+
+        // 2. create an array with "size"
+        // - create a new array with size 10
+        // - by default, initial values will be all zero
+        int[] arr2 = new int[10];
+        for (int i = 0; i < arr2.length; i++) {
+            arr2[i] = i + 1;
+        }
+        System.out.println(Arrays.toString(arr2));
+
+        // int[] arr3 = new int[] {1, 2};
+        String[] countries = {"Canada", "Japan", "Brazil", "Spain", "Germany", "Korea"};
+        for (String country : countries) {
+            System.out.println(country);
+        }
     }
 }
