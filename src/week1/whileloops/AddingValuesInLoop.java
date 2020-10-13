@@ -2,7 +2,7 @@ package week1.whileloops;
 
 import java.util.Scanner;
 
-/// Not solved yet
+
 
 public class AddingValuesInLoop {
     public static void main(String[] args) {
