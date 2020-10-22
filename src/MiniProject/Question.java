@@ -97,11 +97,10 @@ public class Question {
      */
     public  void displayQuestion() {
         int length = getQuestion().length();                        // length of chosen city
-
         for (int i = 0; i < length; i++) {
             String str = getQuestion().substring(i, i+ 1);
             char ch = question.charAt(i);
-            if(Character.isWhitespace(ch)) {     //str.equals(" ")   // 文字がないところはunderbarでreplaceしない
+            if (Character.isWhitespace(ch)) {     //str.equals(" ")   // 文字がないところはunderbarでreplaceしない
                 currentGuess.replace(i, i + 1, " ");
             }
             currentGuess.replace(i, i + 1, "_");
@@ -170,7 +169,7 @@ public class Question {
         if (! getCurrentGuess().toString().contains("_")){
             return true;
         }
-        else if(getPreviousWrongGuesses().size() == 10){
+        else if (getPreviousWrongGuesses().size() == 10){
             return true;
         }
         return false;
