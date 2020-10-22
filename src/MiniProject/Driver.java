@@ -12,6 +12,7 @@ public class Driver {
         System.out.println(q1.loadFile());
         System.out.println(q1.pickCity());
         q1.displayQuestion();
+        q1.isInQuestion();
 //        q1.takeInput();
 
 

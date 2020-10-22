@@ -9,22 +9,54 @@ public class Question {
     // data field
     private ArrayList<String> questions = new ArrayList<>();  // put all the cities in the arraylist
     private String question; // randomly chosen question
-    private char[] charQuestion; // char array after chosen question in string converted
+    //    private char[] charQuestion; // char array after chosen question in string converted
     private ArrayList<String> previousCorrectGuesses = new ArrayList<String>(); // Store user input (correct)
     private ArrayList<Character> previousWrongGuesses = new ArrayList<>(); // Store user input (wrong)
     private StringBuilder currentGuess = new StringBuilder();
+    private char charInput;
+    private String input;
 
     // constructor field // to set the initialized value(if I want user to set the initialized value)
     public Question() {
-        this.questions = questions;
+
         this.previousWrongGuesses = previousWrongGuesses;
         this.previousCorrectGuesses = previousCorrectGuesses;
         this.currentGuess = currentGuess;
     }
 
+    // getter
+    public String getQuestion() {
+        return question;
+    }
+
+    public ArrayList getQuestions() {
+        return questions;
+    }
+
+    public ArrayList getPrevioudWrongGuesses() {
+        return previousWrongGuesses;
+    }
+
+    public ArrayList getPreviousCorrectGuesses() {
+        return previousCorrectGuesses;
+    }
+
+    public StringBuilder getCurrentGuess() {
+        return currentGuess;
+    }
+
+    public char getCharInput() {
+        return charInput;
+    }
+
+    public String getInput() {
+        return input;
+    }
+
+
     //OK : Read file and store the city into ArrayList(question)
+
     /**
-     *
      * @return ArrayList questions
      */
     public ArrayList loadFile() {
@@ -38,35 +70,29 @@ public class Question {
         } catch (Exception e) {
             System.err.println("File not founded");
         }
+        this.questions = questions;
         return questions;
     }
 
     // pick a random city, return char array of the string
+
     /**
-     *
-     * @return char[] charQuestion
+     * @return String question
      */
-    public char[] pickCity(){
-       double random = (Math.random() *  questions.size());
-       long randomNum = Math.round(random);
-       int i = (int)randomNum;
-       String question = questions.get(i);
-       this.question = question;
-        //convert selected question into an char array
-        char[] charQuestion = new char[question.length()];
-        // copy char by char into array
-        for(int j = 0; j < question.length(); j++){
-            charQuestion[j] = question.charAt(j);
-        }
-        this.charQuestion = charQuestion;
-        return charQuestion;
+    public String pickCity() {
+        double random = (Math.random() * questions.size());
+        long randomNum = Math.round(random);
+        int i = (int) randomNum;
+        String question = questions.get(i);
+        this.question = question;
+        return question;
     }
 
     // Convert its letters to underscores, and display
-    public void displayQuestion (){
+    public void displayQuestion() {
         int length = question.length(); // length of chosen city
-        for (int i = 0; i < length ; i++){
-            currentGuess.replace(i, i+1, "_");
+        for (int i = 0; i < length; i++) {
+            currentGuess.replace(i, i + 1, "_");
         }
         System.out.println(currentGuess);
     }
@@ -106,25 +132,37 @@ public class Question {
 //
 //        }
 
-    // take user's input, search for it in the city (-> boolean)
-    public boolean IsInQuestion(){
-        System.out.println("Guess a letter: ");
+    //    take user's input, search for it in the city (-> boolean)
+    public boolean isInQuestion() {
+        System.out.print("Guess a letter: ");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
+        this.input = input;
         //convert user input from string to char
         char charInput = input.charAt(0);
+        this.charInput = charInput;
         System.out.println("Your guess: " + charInput);
-        for (int i = 0; i < charQuestion.length; i++) {
-            if (charQuestion[i] == charInput) {
-                return true;
-            } else{
-            continue;
-            }
+        if (getQuestion().indexOf(charInput) == -1) {
+            previousWrongGuesses.add(charInput);
+            return false;
+        } else {
+            return true;
         }
-        return false;
     }
 
     // reveal correct letters and display (-> string)
+    public void displayGuess() {
+        for (int i = 0; i < question.length(); i++) {
+            if (question.charAt(i) == getCharInput()) {
+                currentGuess.replace(i, i + 1, getInput());
+            }
+        }
+        System.out.println(currentGuess);
+    }
+}
+
+
+
 
     // logic to keep track of wrong letters so they don't lose points
         //guessing the same char twice -> if user's input isn't in the city -> store
