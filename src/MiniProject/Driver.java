@@ -35,6 +35,7 @@ public class Driver {
                         System.out.println("You are guessing: " + q1.getCurrentGuess());
                         System.out.println("You have guessed (" + q1.getPreviousWrongGuesses().size() + ") wrong letters.");
                     } else {
+                        System.out.println("You have guessed (" + q1.getPreviousWrongGuesses().size() + ") wrong letters: " + q1.getPreviousWrongGuesses());
                         System.out.println("You lose!\nThe correct word was '" + q1.getQuestion() + "' !");
                         System.exit(0);
                     }
