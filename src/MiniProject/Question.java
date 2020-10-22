@@ -97,11 +97,13 @@ public class Question {
      */
     public  void displayQuestion() {
         int length = getQuestion().length();                        // length of chosen city
+
+        //文字列に空白が含まれているか
+
         for (int i = 0; i < length; i++) {
+            String str = getQuestion().substring(i, i+ 1);
             char ch = question.charAt(i);
-            String str = Character.toString(ch);
-            String str1 = "";
-            if(str.equals(str1)) {                                  // 文字がないところはunderbarでreplaceしない
+            if(Character.isWhitespace(ch)) {     //str.equals(" ")                              // 文字がないところはunderbarでreplaceしない
                 currentGuess.replace(i, i + 1, " ");
             }
             currentGuess.replace(i, i + 1, "_");
