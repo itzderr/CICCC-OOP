@@ -105,7 +105,7 @@ public class Question {
             }
             currentGuess.replace(i, i + 1, "_");
         }
-        System.out.println(getCurrentGuess());
+        System.out.println("Here's the question.\n" + getCurrentGuess());
     }
 
     /**
