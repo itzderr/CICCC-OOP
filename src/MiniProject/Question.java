@@ -10,7 +10,7 @@ public class Question {
     private ArrayList<String> questions = new ArrayList<>();  // put all the cities in the arraylist
     private String question; // randomly chosen question
     //    private char[] charQuestion; // char array after chosen question in string converted
-    private ArrayList<String> previousCorrectGuesses = new ArrayList<String>(); // Store user input (correct)
+    private ArrayList<Character> previousCorrectGuesses = new ArrayList<>(); // Store user input (correct)
     private ArrayList<Character> previousWrongGuesses = new ArrayList<>(); // Store user input (wrong)
     private StringBuilder currentGuess = new StringBuilder();
     private char charInput;
@@ -97,40 +97,6 @@ public class Question {
         System.out.println(currentGuess);
     }
 
-    // take user's input
-//    public void takeInput(){
-//        System.out.print("Guess a letter: ");
-//        Scanner scanner = new Scanner(System.in);
-//        String input = scanner.nextLine();
-//        //convert user input from string to char
-//        char charInput = input.charAt(0);
-//
-//        System.out.println("Your guess: " + input);
-//
-//        // convert selected question into an char array
-//        char[] charQuestion = new char[question.length()];
-//
-//        // loop through each char of the selected string and compare the i position of
-//        for (int i = 0; i < question.length(); i++){
-//            charQuestion[i] = question.charAt(i);
-//        }
-//
-//        System.out.println(charQuestion);
-//        System.out.println(charQuestion[0]);
-//
-//        for (int j = 0; j < question.length(); j++){
-//            if(charInput == charQuestion[j]){
-//                System.out.println(getCurrentGuess());
-//                currentGuess.replace(j, j+1, input);
-//                System.out.println(currentGuess);
-//            }
-//            else if(getPreviousCorrectGuesses().size() < 10)
-//            previousWrongGuesses.add(charInput);
-//            else{
-//
-//            }
-//
-//        }
 
     //    take user's input, search for it in the city (-> boolean)
     public boolean isInQuestion() {
@@ -142,8 +108,7 @@ public class Question {
         char charInput = input.charAt(0);
         this.charInput = charInput;
         System.out.println("Your guess: " + charInput);
-        if (getQuestion().indexOf(charInput) == -1) {
-            previousWrongGuesses.add(charInput);
+        if (getQuestion().indexOf(input) == -1) {
             return false;
         } else {
             return true;
@@ -152,21 +117,38 @@ public class Question {
 
     // reveal correct letters and display (-> string)
     public void displayGuess() {
-        for (int i = 0; i < question.length(); i++) {
+        for (int i = 0; i < getQuestion().length(); i++) {
             if (question.charAt(i) == getCharInput()) {
                 currentGuess.replace(i, i + 1, getInput());
             }
         }
         System.out.println(currentGuess);
     }
-}
-
-
 
 
     // logic to keep track of wrong letters so they don't lose points
+
+    public boolean isWrongBefore() {
+        for (int i = 0; i < getPrevioudWrongGuesses().size(); i++) {
+            if (getCharInput() == previousWrongGuesses.get(i)) {
+                return true;
+            }
+        }
         //guessing the same char twice -> if user's input isn't in the city -> store
-        // the char to the previousWrongGuess -> return previousWrongGuess
+        getPrevioudWrongGuesses().add(getCharInput());
+        return false;
+    }
+
+    public boolean isOver(){
+        if (! getCurrentGuess().toString().contains("_")){
+            return true;
+        }
+        else if(getPrevioudWrongGuesses().size() == 10){
+            return true;
+        }
+        return false;
+    }
+}
 
     // check if game over or not (size of previousWrongGuess is less than 10)
 
