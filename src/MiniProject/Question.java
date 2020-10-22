@@ -16,9 +16,10 @@ public class Question {
     private char charInput;
     private String input;
 
+
+
     // constructor field // to set the initialized value(if I want user to set the initialized value)
     public Question() {
-
         this.previousWrongGuesses = previousWrongGuesses;
         this.previousCorrectGuesses = previousCorrectGuesses;
         this.currentGuess = currentGuess;
@@ -52,6 +53,7 @@ public class Question {
     public String getInput() {
         return input;
     }
+
 
 
     //OK : Read file and store the city into ArrayList(question)
@@ -92,7 +94,10 @@ public class Question {
     public void displayQuestion() {
         int length = question.length(); // length of chosen city
         for (int i = 0; i < length; i++) {
-            currentGuess.replace(i, i + 1, "_");
+            char ch = question.charAt(i);
+            if(!"".equals(ch)) {
+                currentGuess.replace(i, i + 1, "_");
+            }
         }
         System.out.println(currentGuess);
     }
@@ -125,17 +130,15 @@ public class Question {
         System.out.println(currentGuess);
     }
 
-
     // logic to keep track of wrong letters so they don't lose points
 
     public boolean isWrongBefore() {
-        for (int i = 0; i < getPrevioudWrongGuesses().size(); i++) {
+        for (int i = 0; i < getPrevioudWrongGuesses().size() ; i++) {
             if (getCharInput() == previousWrongGuesses.get(i)) {
                 return true;
             }
         }
         //guessing the same char twice -> if user's input isn't in the city -> store
-        getPrevioudWrongGuesses().add(getCharInput());
         return false;
     }
 
@@ -150,10 +153,7 @@ public class Question {
     }
 }
 
-    // check if game over or not (size of previousWrongGuess is less than 10)
 
-
-    // underscoreがなくなったら-> won!
 
 
 

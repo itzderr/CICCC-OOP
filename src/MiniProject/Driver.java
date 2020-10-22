@@ -1,7 +1,6 @@
 package MiniProject;
 
 
-
 import java.util.Scanner;
 
 public class Driver {
@@ -16,46 +15,42 @@ public class Driver {
         q1.isInQuestion();
         q1.displayGuess();
 
-        while(!q1.isOver()) {
+        while (!q1.isOver()) {
+            int wrongCount = q1.getPrevioudWrongGuesses().size();
             if (q1.isInQuestion()) {
                 q1.displayGuess();
+                System.out.println("You are guessing: " + q1.getCurrentGuess());
+                System.out.println("You have guessed (" + wrongCount + ") wrong letters.");
 
-                if(!q1.getCurrentGuess().toString().contains("_")){
-                    System.out.println("You win! \n You have guessed '" + q1.getQuestion() + "' correctly");
+                if (!q1.getCurrentGuess().toString().contains("_")) {
+                    System.out.println("You win!\nYou have guessed '" + q1.getQuestion() + "' correctly");
                     System.exit(0);
-                }
-                else {
-                    System.out.println("You are guessing: " + q1.getCurrentGuess());
                 }
 
             } else if (!q1.isWrongBefore()) {
-                int wrongCount = q1.getPrevioudWrongGuesses().size();
-                if (wrongCount == 10){
-                    System.out.println("You lose! \n The correct word was '" + q1.getQuestion() + "' !");
+                //previously did not get same wrong char
+                q1.getPrevioudWrongGuesses().add(q1.getInput());
+
+                if (wrongCount < 10) {
+                    System.out.println(q1.getPrevioudWrongGuesses());
+                    System.out.println("You are guessing: " + q1.getCurrentGuess());
+                    System.out.println("You have guessed (" + wrongCount + ") wrong letters.");
                 }
-                System.out.println("You have guessed (" + wrongCount + ") wrong letters.");
-                System.exit(0);
-            }
-        }
 
-
-
-//        while(!q1.isOver()) {
-//            q1.displayQuestion();
-//            q1.isInQuestion();
-//            q1.displayGuess();
-//            if (q1.isInQuestion()) {
-//                q1.displayGuess();
-//                System.out.println("You are guessing: " + q1.getCurrentGuess() );
-//            } else if(! q1.isWrongBefore()){
-//                int wrongCount = q1.getPrevioudWrongGuesses().size();
-//                System.out.println("You have guessed (" + wrongCount + ") letters." );
+                if (wrongCount == 10) {
+                    System.out.println("You lose!\nThe correct word was '" + q1.getQuestion() + "' !");
+                    System.exit(0);
+                }
+//                    q1.getPrevioudWrongGuesses().add(q1.getInput());
+//                    System.out.println("You are guessing: " + q1.getCurrentGuess());
+//                    System.out.println("You have guessed (" + wrongCount + ") wrong letters.");
 //            }
+            }
+            System.out.println(q1.getPrevioudWrongGuesses());
+            System.out.println("You are guessing: " + q1.getCurrentGuess());
+            System.out.println("You have guessed (" + wrongCount + ") wrong letters.");
 
         }
-
-
-
+    }
 }
-
 
