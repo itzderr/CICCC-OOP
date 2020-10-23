@@ -25,7 +25,7 @@ public class WhereIsIt {
                 count += 1;
             }
         }
-        if(count > 0){
+        if (count > 0){
             System.exit(0);
         }else {
             System.out.println(value + " is not in the array.");
