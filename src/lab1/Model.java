@@ -286,7 +286,4 @@ public class Model {
         System.out.println(str + str2 + "\n" + str3 + "\n" + "Hourly rate: $" + calculatePayDollarsPerHour() );
     }
 
-
-
-
 }

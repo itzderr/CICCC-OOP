@@ -83,7 +83,7 @@ public class Question {
      */
     public String pickCity() {
         double random = (Math.random() * questions.size());
-        long randomNum = Math.round(random);
+        long randomNum = Math.round(random) - 1;
         int i = (int) randomNum;
         String question = questions.get(i);                         // 大文字小文字ミックスされた状態
         this.question = question;
