@@ -9,6 +9,7 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+src/RandomPicker.java
 
 # Generated files
 .idea/**/contentModel.xml
