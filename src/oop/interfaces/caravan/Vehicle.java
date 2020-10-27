@@ -1,4 +1,4 @@
-package oop.interfaces;
+package oop.interfaces.caravan;
 
 public abstract class Vehicle implements Movable {
   private int fuel;

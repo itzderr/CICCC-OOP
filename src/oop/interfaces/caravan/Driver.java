@@ -1,4 +1,4 @@
-package oop.interfaces;
+package oop.interfaces.caravan;
 
 public class Driver {
   public static void main(String[] args) {

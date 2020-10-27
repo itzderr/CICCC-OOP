@@ -1,4 +1,4 @@
-package oop.interfaces;
+package oop.interfaces.caravan;
 
 public class Caravan implements Habitable, Movable {
   private int maxCapacity;
