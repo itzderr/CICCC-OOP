@@ -1,4 +1,4 @@
-package oop.interfaces;
+package oop.interfaces.caravan;
 
 public interface Movable {
     // required methods
