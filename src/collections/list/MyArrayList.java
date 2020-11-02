@@ -70,7 +70,7 @@ public class MyArrayList implements List, RandomAccess {
   public boolean add(Object o) {
     // TODO: Implement Me
     if (size == elementData.length) {
-      elementData = grow(elementData.length);
+      elementData = grow(size + 1);
     }
     elementData[size] = o;
     size++;
