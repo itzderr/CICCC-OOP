@@ -18,6 +18,18 @@ public class MyArrayList implements List, RandomAccess {
     elementData = new Object[DEFAULT_SIZE];
   }
 
+  public MyArrayList(int initialCapacity) {
+    if (initialCapacity >= 0) {
+      elementData = new Object[initialCapacity];
+    } else {
+      throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
+    }
+  }
+
+  public MyArrayList(Collection c) {
+    elementData = c.toArray();
+  }
+
   @Override
   public int size() {
     // TODO: Implement Me
