@@ -1,8 +1,11 @@
 package miniProject2;
 
-import java.awt.*;
+/**
+ * @yumi
+ */
+
 import java.util.ArrayList;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class Driver {
 
@@ -12,6 +15,7 @@ public class Driver {
         // default contact list
         Contact c1 = new Contact(0, "Derrick Park", "123-456-7890", "", "", "Vancouver");
         Contact c2 = new Contact(1, "Miranda Kerr", "098-123-1431", "", "123-123-1234", "LA");
+
         contactList.add(c1);
         contactList.add(c2);
         ContactList.setContactList(contactList);
@@ -21,8 +25,9 @@ public class Driver {
         System.out.println(ContactList.getContactList().get(0));
         System.out.println(ContactList.getContactList().get(1));
 
-        //while true
         while (true) {
+
+                // try catch でoptionインプットの入力確認
                 System.out.print("+==== Contact  App ====+\n" +
                         "| 1. List all Contacts |\n" +
                         "| 2. Add new Contact   |\n" +
@@ -33,6 +38,7 @@ public class Driver {
                         "Enter your option: ");
 
                 int optionInput = InputCollector.getUserIntInput("Enter your option");
+                // optionが1より大きく、5以下であるか確認(else:int以外である場合、スペースである場合)
                 if (String.valueOf(optionInput).length() == 1) {
                     switch (optionInput) {
                         case 1:
@@ -40,62 +46,86 @@ public class Driver {
                             break;
 
                         case 2:
-                            Contact newContact = new Contact();
-                            newContact.setIndex(ContactList.getContactList().size());   // set index
-                            System.out.println(newContact.getIndex());                  //新しいindex確認
 
+                            // while trueにする
+                            int tempIndex = ContactList.getContactList().size();
                             System.out.println("Enter name: ");
-                            String n = InputCollector.getUserInput("Enter name");
-                            while (n == "") {
+                            String tempName = InputCollector.getUserInput("Enter name");
+                            while (tempName == ""){
                                 System.out.println("You must enter this field.");
                                 System.out.println("Enter name: ");
-                                n = InputCollector.getUserInput("Enter name");
+                                tempName = InputCollector.getUserInput("Enter name");
                             }
-                            newContact.setName(n);
-
                             System.out.println("Enter mobile: ");
-                            String m = InputCollector.getUserInput("Enter mobile: ");
-                            while (m == "") {
+                            String tempMobile = InputCollector.getUserInput("Enter mobile: ");
+                            while (tempMobile == "") {
                                 System.out.println("You must enter this field.");
                                 System.out.println("Enter mobile: ");
-                                m = InputCollector.getUserInput(("Enter mobile:"));
+                                tempMobile = InputCollector.getUserInput(("Enter mobile:"));
                             }
-                            newContact.setMobile(m);
-
                             System.out.println("Enter work: ");
-                            newContact.setWork(InputCollector.getUserInput("Enter work:"));
+                            String tempWork = InputCollector.getUserInput("Enter work:");
                             System.out.println("Enter home: ");
-                            newContact.setHome(InputCollector.getUserInput("Enter home:"));
+                            String tempHome = InputCollector.getUserInput("Enter home:");
                             System.out.println("Enter city: ");
-                            newContact.setCity(InputCollector.getUserInput("Enter city: "));
-
-                            contactList.add(newContact);             //　Arrayに追加
-                            ContactList.setContactList(contactList);     //
+                            String tempCity = InputCollector.getUserInput("Enter city:");
+                            // 入力された名前と電話番号でこれまでのリスト内で重複がない場合、新しいコンタクト作成。
+                            Contact newContact = new Contact(tempIndex, tempName,tempMobile,tempWork,tempHome,tempCity);
+                            ContactList.addContact(newContact);
                             ContactList.displayContacts();
                             System.out.println("Successfully added a new contact");
                             break;
+                             // 重複のある場合
+                            //重複した箇所をディスプレイ->新しく作りたいかどうか-> 必要なければbreak,
+                            //新しく作りたい場合は先頭に戻る
+
 
                         case 3:
                             ContactList.displayContacts();
+                            while(true) {
+                                try {
+                                    System.out.println("Enter index to be removed: ");
+                                    int option = InputCollector.getUserIntInput("Enter index: ");
 
-                            System.out.println("Enter index to be removed: ");
-                            int option = InputCollector.getUserIntInput("Enter index: ");
-                            String temp = ContactList.getContactList().get(option).getName();
-                            while (option >= ContactList.getContactList().size()) {
-                                System.out.println("invalid input");
-                                System.out.println("Enter index to be removed: ");
-                                option = InputCollector.getUserIntInput("Enter index: ");
+                                    //when nothing is input//////
+                                    if (String.valueOf(option).length() == 0) {
+                                        throw new Exception("Please input an index");
+                                    }
+                                    System.out.printf("Are you sure you want to delete " + ContactList.getContactList().get(option) + "?\n" +
+                                            "press y to remove, n to go back to menu.");
+
+                                    String rep = InputCollector.getUserInput("y/n");
+                                    if(rep.equals("n")){
+                                        break;
+                                    }
+
+                                    String temp = ContactList.getContactList().get(option).getName();
+                                    ContactList.removeElement(option);
+                                    ContactList.displayContacts();
+                                    System.out.printf("Successfully removed " + temp);
+                                    System.out.println();
+                                    break;
+                                } catch (Exception e) {
+                                    System.out.println("not found, the current Contact list is as below: ");
+
+                                }
+                                ContactList.displayContacts();
+                                System.out.println("Do you still want to remove a contact? press y or n.");
+                                String str = InputCollector.getUserInput("Enter: ");
+                                if (str.equals("n")){
+                                    System.out.println("Bye");
+                                    break;
+                                }
+
                             }
-                            ContactList.removeElement(option);
-                            ContactList.displayContacts();
-                            System.out.printf("Successfully removed " + temp);
-                            System.out.println();
                             break;
 
                         case 4:
+                            // while trueでtry catch文にする
                             ContactList.displayContacts();
                             System.out.println("Enter index to be updated: ");
                             int toBeUpdated = InputCollector.getUserIntInput("Enter index: ");
+                            // indexがArrayないにあるのがtrue
                             while (toBeUpdated >= ContactList.getContactList().size()) {
                                 System.out.println("invalid input");
                                 System.out.println("Enter index to be removed: ");
@@ -136,7 +166,12 @@ public class Driver {
                             break;
 
                         case 5:
+                            System.out.println("Bye!");
                             System.exit(0);
+
+                        default:
+                            System.out.println("Input invalid");
+                            continue;
                     }
             }
         }

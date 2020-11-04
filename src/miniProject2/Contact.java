@@ -1,8 +1,9 @@
 package miniProject2;
 
-/**/
+/**Contact class represents individual Contact information**/
+
 public class Contact {
-    // instance variables
+
     private int index;
     private String name;
     private String mobile;
@@ -17,10 +18,8 @@ public class Contact {
         this.work = work;
         this.home = home;
         this.city = city;
-
     }
 
-    // default constructor
     public Contact(){
         this.index = index;
         setName(name);
@@ -31,7 +30,7 @@ public class Contact {
         setCity(city);
     }
 
-    // getter
+    // getter methods
     public int getIndex(){
         return index;
     }
@@ -51,15 +50,13 @@ public class Contact {
         return city;
     }
 
-
-    // setter
+    // setter methods
     public void setIndex(int index){
         this.index = index;
     }
     public void setName(String name){
         this.name = name;
     }
-
     public void setMobile(String mobile){
         this.mobile = mobile;
     }
@@ -74,9 +71,11 @@ public class Contact {
     }
 
 
+
+
     @Override
     public String toString() {
-        String str1 =  getIndex() + ". <" + getName() + ">" + " (mobile=" + getMobile()  ;
+        String str1 =  getIndex() + ". <" + getName() + ">" + " (mobile=" + getMobile() ;
 
         if (getWork() == "" && getHome() =="" && getCity() == ""){
             return str1 + ")";
