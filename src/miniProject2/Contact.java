@@ -4,6 +4,7 @@ package miniProject2;
 
 public class Contact {
 
+    // mobile,work, homeはintで電話番号に変更
     private int index;
     private String name;
     private String mobile;
@@ -69,6 +70,14 @@ public class Contact {
     public void setCity(String city) {
         this.city = city;
     }
+
+    //名前のvalidity check ->一文字以上、full nameなのでスペースを含む -> true
+    //名前のフォーマット正す -> validityが確認取れたら、最初の文字とスペースの後を大文字にしたStringを返す
+
+
+
+    // 電話番号のvalidity check -> digitが10ある -> true
+    //　電話番号のフォーマット正す　-> 参考の数字 +ハイフン + さんこの数字 + ハイフン +4つの数字
 
 
 

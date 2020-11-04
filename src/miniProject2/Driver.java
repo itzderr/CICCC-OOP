@@ -12,6 +12,7 @@ public class Driver {
     public static ArrayList<Contact> contactList = new ArrayList<>();
     public static void main(String[] args) {
 
+
         // default contact list
         Contact c1 = new Contact(0, "Derrick Park", "123-456-7890", "", "", "Vancouver");
         Contact c2 = new Contact(1, "Miranda Kerr", "098-123-1431", "", "123-123-1234", "LA");
@@ -27,7 +28,8 @@ public class Driver {
 
         while (true) {
 
-                // try catch でoptionインプットの入力確認
+            // try catch でoptionインプットの入力確認
+            try {
                 System.out.print("+==== Contact  App ====+\n" +
                         "| 1. List all Contacts |\n" +
                         "| 2. Add new Contact   |\n" +
@@ -38,20 +40,25 @@ public class Driver {
                         "Enter your option: ");
 
                 int optionInput = InputCollector.getUserIntInput("Enter your option");
-                // optionが1より大きく、5以下であるか確認(else:int以外である場合、スペースである場合)
-                if (String.valueOf(optionInput).length() == 1) {
-                    switch (optionInput) {
-                        case 1:
-                            ContactList.displayContacts();
-                            break;
+                //何も入力されなかったら再入力促す --->できてない
+                if (String.valueOf(optionInput).equals("")){
+                    throw new Exception("Invalid option. Please enter a valid option on the menu.");
+                }
 
-                        case 2:
+                switch (optionInput) {
+                    case 1:
+                        ContactList.displayContacts();
+                        break;
+
+                    case 2:
 
                             // while trueにする
+                        while (true) {
                             int tempIndex = ContactList.getContactList().size();
+                            //名前は一文字以上、最初の文字とスペースの後の文字は大文字にして保存
                             System.out.println("Enter name: ");
                             String tempName = InputCollector.getUserInput("Enter name");
-                            while (tempName == ""){
+                            while (tempName == "") {
                                 System.out.println("You must enter this field.");
                                 System.out.println("Enter name: ");
                                 tempName = InputCollector.getUserInput("Enter name");
@@ -70,19 +77,20 @@ public class Driver {
                             System.out.println("Enter city: ");
                             String tempCity = InputCollector.getUserInput("Enter city:");
                             // 入力された名前と電話番号でこれまでのリスト内で重複がない場合、新しいコンタクト作成。
-                            Contact newContact = new Contact(tempIndex, tempName,tempMobile,tempWork,tempHome,tempCity);
+                            Contact newContact = new Contact(tempIndex, tempName, tempMobile, tempWork, tempHome, tempCity);
                             ContactList.addContact(newContact);
                             ContactList.displayContacts();
                             System.out.println("Successfully added a new contact");
                             break;
-                             // 重複のある場合
-                            //重複した箇所をディスプレイ->新しく作りたいかどうか-> 必要なければbreak,
-                            //新しく作りたい場合は先頭に戻る
+                        }
+                        // 重複のある場合
+                        //重複した箇所をディスプレイ->新しく作りたいかどうか-> 必要なければbreak,
+                        //新しく作りたい場合は先頭に戻る
 
 
                         case 3:
                             ContactList.displayContacts();
-                            while(true) {
+                            while (true) {
                                 try {
                                     System.out.println("Enter index to be removed: ");
                                     int option = InputCollector.getUserIntInput("Enter index: ");
@@ -95,7 +103,7 @@ public class Driver {
                                             "press y to remove, n to go back to menu.");
 
                                     String rep = InputCollector.getUserInput("y/n");
-                                    if(rep.equals("n")){
+                                    if (rep.equals("n")) {
                                         break;
                                     }
 
@@ -112,7 +120,7 @@ public class Driver {
                                 ContactList.displayContacts();
                                 System.out.println("Do you still want to remove a contact? press y or n.");
                                 String str = InputCollector.getUserInput("Enter: ");
-                                if (str.equals("n")){
+                                if (str.equals("n")) {
                                     System.out.println("Bye");
                                     break;
                                 }
@@ -170,9 +178,11 @@ public class Driver {
                             System.exit(0);
 
                         default:
-                            System.out.println("Input invalid");
+                            System.out.println("Invalid option. Please enter a valid option on the menu.");
                             continue;
                     }
+            } catch (Exception e){
+                System.out.println("Invalid option. Please enter a valid option on the menu.");
             }
         }
     }
