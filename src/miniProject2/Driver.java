@@ -32,7 +32,7 @@ public class Driver {
                         "Enter your option: ");
 
                 String optionInput = InputCollector.getUserInput("Enter your option");
-                while (optionInput.equals("") || optionInput.equals(" ")){                                                    //空白である限りexception投げる
+                while (optionInput.equals("") || optionInput.equals(" ")){
                     throw new Exception();
                 }
                 int optionIntInput = Integer.parseInt(optionInput);                    // Convert string to int
@@ -165,7 +165,7 @@ public class Driver {
                                             System.out.println("Enter name: ");
                                             tempName = InputCollector.getUserInput("Enter name");
                                         }
-                                        tempName = Contact.nameFormat(tempName);                              // Formatを整える
+                                        tempName = Contact.nameFormat(tempName);
                                         ContactList.getContactList().get(indexOption).setName(tempName);
 
                                         System.out.println("Enter mobile: ");
