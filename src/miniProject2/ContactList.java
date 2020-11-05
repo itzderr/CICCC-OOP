@@ -22,14 +22,16 @@ public class ContactList extends Contact {
         ContactList.contactList = contactList;
     }
 
+
     /**
      * display all the contacts
      */
     public static void displayContacts(){
         for (int i = 0; i < ContactList.getContactList().size(); i++){
-            System.out.println(ContactList.getContactList().get(i));
+            System.out.println(getContactList().get(i));
         }
     }
+
 
     /**
      * insert contact into the ContactList's arrayList
@@ -51,10 +53,11 @@ public class ContactList extends Contact {
     // 名前と電話番号が一致する人の重複がないか確認
     public static boolean isDuplicate(String newName, String newMobile){
         for (int i = 0; i < getContactList().size(); i++){
-            if (getContactList().get(i).getName() == newName && getContactList().get(i).getMobile() == newMobile){
+            if (getContactList().get(i).getName().equals(newName) && getContactList().get(i).getMobile().equals(newMobile)){
+                System.out.println("The contact already exists, and can not be created.");
+                System.out.println(getContactList().get(i));
                 return true;
             }
-            continue;
         }
         return false;
     }

@@ -39,6 +39,16 @@ public class InputCollector {
         int input = scan.nextInt();
         return input;
     }
+
+//    public static boolean isEmpty(String input){
+//        if(input.length() == 0 || input == null || input == "" || input == " " || input == "   "){
+//            return true;
+//        }
+//        return false;
+//    }
+
+
+
 }
 
 
