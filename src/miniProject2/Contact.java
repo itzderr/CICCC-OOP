@@ -3,8 +3,7 @@ package miniProject2;
 /**Contact class represents individual Contact information**/
 
 public class Contact {
-
-    // mobile,work, homeはintで電話番号に変更
+    // instance variables
     private int index;
     private String name;
     private String mobile;
@@ -12,6 +11,7 @@ public class Contact {
     private String home;
     private String city;
 
+    // constructors
     public Contact(int index, String name, String mobile, String work, String home, String city){
         this.index = index;
         this.name = name;
@@ -22,7 +22,7 @@ public class Contact {
     }
 
     public Contact(){
-        this.index = index;
+        setIndex(index);
         setName(name);
         setMobile(mobile);
         setCity(city);
@@ -126,7 +126,6 @@ public class Contact {
         }
         return false;
     }
-
 
 
     @Override

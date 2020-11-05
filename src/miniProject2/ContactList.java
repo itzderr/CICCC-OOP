@@ -6,18 +6,20 @@ import java.util.ArrayList;
 
 public class ContactList extends Contact {
 
+    // instance variable
     public static ArrayList<Contact> contactList = new ArrayList<>();
 
+    // constructor
     public ContactList (String name, String mobile, String work, String home, String city, int index,ArrayList<Contact> contactList){
         super(index, name, mobile, work, home, city);
         this.contactList = contactList;
     }
 
-
+    // getter
     public static ArrayList<Contact> getContactList() {
         return contactList;
     }
-
+    // setter
     public static void setContactList(ArrayList<Contact> contactList) {
         ContactList.contactList = contactList;
     }
@@ -34,7 +36,7 @@ public class ContactList extends Contact {
 
 
     /**
-     * insert contact into the ContactList's arrayList
+     * insert contact into the ContactList's arrayList, and set it as a new contact list
      * @param newContact
      */
     public static void addContact(Contact newContact){
@@ -42,7 +44,12 @@ public class ContactList extends Contact {
         setContactList(contactList);
     }
 
-    // 入力されたindexがArrayList にあるかどうか
+
+    /**
+     * Check if the inputted index is in the list
+     * @param inputIndex
+     * @return boolean
+     */
     public static boolean isInList(int inputIndex){
         if (inputIndex < getContactList().size()){
             return true;
@@ -50,7 +57,13 @@ public class ContactList extends Contact {
         return false;
     }
 
-    // 名前と電話番号が一致する人の重複がないか確認
+    /**
+     * Check if there is a contact with the same name and same mobile phone number
+     * @param newName
+     * @param newMobile
+     * @return boolean
+     */
+
     public static boolean isDuplicate(String newName, String newMobile){
         for (int i = 0; i < getContactList().size(); i++){
             if (getContactList().get(i).getName().equals(newName) && getContactList().get(i).getMobile().equals(newMobile)){

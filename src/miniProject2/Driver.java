@@ -5,7 +5,6 @@ package miniProject2;
  */
 
 import java.util.ArrayList;
-//import java.util.Scanner;
 
 public class Driver {
 
@@ -15,7 +14,7 @@ public class Driver {
 
         Contact c1 = new Contact(0, "Derrick Park", "123-456-7890", "", "", "Vancouver");
         Contact c2 = new Contact(1, "Miranda Kerr", "098-123-1431", "", "123-123-1234", "LA");
-        Contact c3 = new Contact(2, "Lebron James", "123-567-1234","43-123-5432", "","LA");
+        Contact c3 = new Contact(2, "Lebron James", "123-567-1234","432-123-5432", "","LA");
 
         ContactList.addContact(c1);
         ContactList.addContact(c2);
@@ -36,7 +35,7 @@ public class Driver {
                 while (optionInput.equals("") || optionInput.equals(" ")){                                                    //空白である限りexception投げる
                     throw new Exception();
                 }
-                int optionIntInput = Integer.parseInt(optionInput);                             // Stringからint型に変換
+                int optionIntInput = Integer.parseInt(optionInput);                    // Convert string to int
 
                 switch (optionIntInput) {
 
@@ -49,7 +48,7 @@ public class Driver {
                             int tempIndex = ContactList.getContactList().size();
                             System.out.println("Enter name: ");
                             String tempName = InputCollector.getUserInput("Enter name");
-                            while (tempName == "") {
+                            while (tempName.equals("")) {
                                 System.out.println("You must enter this field.");
                                 System.out.println("Enter name: ");
                                 tempName = InputCollector.getUserInput("Enter name");
@@ -59,11 +58,11 @@ public class Driver {
                                 System.out.println("Enter name: ");
                                 tempName = InputCollector.getUserInput("Enter name");
                             }
-                            tempName = Contact.nameFormat(tempName);                              // Formatを整える
+                            tempName = Contact.nameFormat(tempName);                              // Align name format
 
                             System.out.println("Enter mobile: ");
                             String tempMobile = InputCollector.getUserInput("Enter mobile: ");
-                            while (tempMobile == "" || tempMobile == " ") {
+                            while (tempMobile.equals("") || tempMobile.equals(" ")) {
                                 System.out.println("You must enter this field.");
                                 System.out.println("Enter mobile: ");
                                 tempMobile = InputCollector.getUserInput(("Enter mobile:"));
@@ -205,7 +204,7 @@ public class Driver {
                                             System.out.println("Enter name: ");
                                             tempName = InputCollector.getUserInput("Enter name");
                                         }
-                                        tempName = Contact.nameFormat(tempName);                              // Formatを整える
+                                        tempName = Contact.nameFormat(tempName);
                                         ContactList.getContactList().get(indexOption).setName(tempName);
 
                                         System.out.println("Enter mobile: ");
@@ -228,6 +227,7 @@ public class Driver {
                                         ContactList.getContactList().get(indexOption).setCity(InputCollector.getUserInput("Enter city: "));
                                         ContactList.displayContacts();
                                         System.out.println("Successfully updated");
+                                        break;
                                 }
                                     break;
                             } catch (Exception e) {

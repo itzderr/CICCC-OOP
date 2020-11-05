@@ -7,6 +7,7 @@ package miniProject2;
 import java.util.Scanner;
 
 public class InputCollector {
+
     private String prompt;
 
     public InputCollector(String prompt) {
@@ -28,27 +29,6 @@ public class InputCollector {
         String str = scan.nextLine();
         return str;
     }
-
-    /**
-     * Take string parameter and return user int inputs
-     * @param prompt
-     * @return input
-     */
-    public static int getUserIntInput(String prompt){
-        Scanner scan = new Scanner(System.in);
-        int input = scan.nextInt();
-        return input;
-    }
-
-//    public static boolean isEmpty(String input){
-//        if(input.length() == 0 || input == null || input == "" || input == " " || input == "   "){
-//            return true;
-//        }
-//        return false;
-//    }
-
-
-
 }
 
 
