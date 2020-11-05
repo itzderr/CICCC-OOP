@@ -71,14 +71,61 @@ public class Contact {
         this.city = city;
     }
 
-    //名前のvalidity check ->一文字以上、full nameなのでスペースを含む -> true
-    //名前のフォーマット正す -> validityが確認取れたら、最初の文字とスペースの後を大文字にしたStringを返す
+
+    /**
+     * check validity of name: has to be more than one char and contains a space
+     * @param name
+     * @return boolean
+     */
+    public static boolean isNameValid(String name){
+        if(name.length() > 1 && name.contains(" ")){
+            return true;
+        }
+        return false;
+    }
 
 
+    /**
+     * Align name format: always first letter of first name and last name to be capital letters
+     * @param name
+     * @return str
+     */
+    public static String nameFormat(String name){
+        String str = "";
+        char c;
+        String storeName = name;
+        for (int i = 0; i < storeName.length(); i++){
+            c = storeName.charAt(i);
+            if (i == 0){
+                str = str + name.substring(i,i + 1).toUpperCase();
+            } else if (Character.isWhitespace(c)){
+                str = str + " " + name.substring(i + 1 , i + 2).toUpperCase();
+                i = i+ 1;
+            }
+            else {
+                str = str + name.substring(i, i + 1).toLowerCase();
+            }
+        }
+        return str;
+    }
 
-    // 電話番号のvalidity check -> digitが10ある -> true
-    //　電話番号のフォーマット正す　-> 参考の数字 +ハイフン + さんこの数字 + ハイフン +4つの数字
+    /**
+     * Check phone number format
+     * @param number
+     * @return
+     */
+    public static boolean isValidNumber(String number) {
 
+        if(number.length() == 12){
+            String str = "-";
+            String first = number.substring(3,4);
+            String second = number.substring(7,8);
+            if (first.equals(str) && second.equals(str)){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 
